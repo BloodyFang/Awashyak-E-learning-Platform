@@ -1,0 +1,353 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Awashyak</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+  
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{%static 'assets/fonts/fontawesome5-overrides.min.css'%}">
+    <link rel="stylesheet" href="{%static 'assets/css/styles.css'%}">
+</head>
+
+<body class="links">
+
+
+
+
+
+
+    <nav class="navbar navbar-light navbar-expand-md border rounded-0 shadow">
+        <div class="container-fluid"><a class="navbar-brand text-monospace" href="#"><strong>AwashYAK&nbsp;</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav d-xl-flex mr-auto align-items-xl-center" style="padding: 0px;">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link border-primary shadow" href="#">Subjects</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">&nbsp; &nbsp;<input class="border rounded border-dark shadow-sm" type="search" placeholder="Search">&nbsp;<i class="fa fa-search"></i></a></li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Sign In&nbsp; &nbsp;|</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Register</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+
+
+    {% block content %}
+    <section class="section1 study1">
+        <h1>Learn new skills</h1>
+        <h2>Say hello to the online learning.</h2>
+        <div class="links"><a href="#">Register Now</a></div><img class="img-fluid img1" src="{% static 'assets/img/study1%20(2).png'%}" style="background-repeat: no-repeat;height: 522px;width: 1127px;">
+    </section>
+
+    <section class="section1 study1">
+        <h1>Study Anywhere, Anytime</h1>
+        <h2><br>Develop your career, develop yourself, and pursue your study with flexible online courses.<br></h2>
+        <div class="links"><a href="#">Explore subjects</a></div><img class="img-fluid img1" src="{% static 'assets/img/study2.png' %}" style="background-repeat: no-repeat;height: 522px;width: 1127px;">
+    </section>
+
+    <section class="section1 study1">
+        <h1>Learn with experts<br></h1>
+        <h2><br>Meet educators, who'll share their experience and teach you through videos, articles, quizzes and&nbsp;discussions.<br></h2>
+        <div class="links"><a href="#">About Us</a></div><img class="img-fluid img1" src="{% static 'assets/img/teacher.jpg' %}">
+  </section> 
+  
+  <!-- HOME HEADING SECTION -->
+  <section id="home-heading" class="p-5">
+    <div class="dark-overlay">
+      <div class="row">
+        <div class="col">
+          <div class="container pt-5">
+            <h1>Are You Ready To Get Started?</h1>
+            <p class="d-none d-lg-block">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+  
+  <!-- BOXES -->
+  <section id="boxes" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card text-center border-info mb-resp">
+            <div class="card-body">
+              <h3 class="text-info">Be Better</h3>
+              <p class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet, deserunt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center bg-info text-white mb-resp">
+            <div class="card-body">
+              <h3>Be Smarter</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet, deserunt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center border-info mb-resp">
+            <div class="card-body">
+              <h3 class="text-info">Be Faster</h3>
+              <p class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet, deserunt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center bg-info text-white">
+            <div class="card-body">
+              <h3>Be Stronger</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet, deserunt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<section id="about" class="py-5 text-center bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="info-header mb-5">
+            <h1 class="text-info pb-3">
+              Why this online learning platform?
+            </h1>
+            <p class="lead pb-3">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus obcaecati alias rerum dolore fugiat debitis?
+            </p>
+          </div>
+
+          <!-- ACCORDION -->
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <div href="#collapse1" data-toggle="collapse" data-parent="#accordion">
+                    <i class="fas fa-arrow-circle-down"></i> Get Inspired
+                  </div>
+                </h5>
+              </div>
+
+              <div id="collapse1" class="collapse show">
+                <div class="card-body">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit odit laborum qui, debitis, sequi dolores nobis mollitia
+                  labore quasi earum laboriosam nihil cupiditate magnam iusto nostrum doloremque accusantium repudiandae
+                  expedita autem et, repellendus suscipit consequatur! Alias, maiores amet sunt ab inventore illo, deleniti
+                  facilis consequatur tenetur nam pariatur fuga nisi!
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <div href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+                    <i class="fas fa-arrow-circle-down"></i> Gain The Knowledge
+                  </div>
+                </h5>
+              </div>
+
+              <div id="collapse2" class="collapse">
+                <div class="card-body">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit odit laborum qui, debitis, sequi dolores nobis mollitia
+                  labore quasi earum laboriosam nihil cupiditate magnam iusto nostrum doloremque accusantium repudiandae
+                  expedita autem et, repellendus suscipit consequatur! Alias, maiores amet sunt ab inventore illo, deleniti
+                  facilis consequatur tenetur nam pariatur fuga nisi!
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <div href="#collapse3" data-toggle="collapse" data-parent="#accordion">
+                    <i class="fas fa-arrow-circle-down"></i> Open Your Mind
+                  </div>
+                </h5>
+              </div>
+
+              <div id="collapse3" class="collapse">
+                <div class="card-body">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit odit laborum qui, debitis, sequi dolores nobis mollitia
+                  labore quasi earum laboriosam nihil cupiditate magnam iusto nostrum doloremque accusantium repudiandae
+                  expedita autem et, repellendus suscipit consequatur! Alias, maiores amet sunt ab inventore illo, deleniti
+                  facilis consequatur tenetur nam pariatur fuga nisi!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  {% endblock %}
+  
+  {% block footer %}
+  <!-- Footer -->
+<footer class="page-footer font-small unique-color-dark">
+
+  <div style="background-color: #17a2b8;">
+    <div class="container">
+
+      <!-- Grid row-->
+      <div class="row py-4 d-flex align-items-center">
+
+        <!-- Grid column -->
+        <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+          <h6 class="mb-0">Get connected with us on social networks!</h6>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <i class="fab fa-facebook-f white-text mr-4"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <i class="fab fa-twitter white-text mr-4"> </i>
+          </a>
+          <!-- Google +-->
+          <a class="gplus-ic">
+            <i class="fab fa-google-plus-g white-text mr-4"> </i>
+          </a>
+          <!--Linkedin -->
+          <a class="li-ic">
+            <i class="fab fa-linkedin-in white-text mr-4"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <i class="fab fa-instagram white-text"> </i>
+          </a>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row-->
+
+    </div>
+  </div>
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5">
+
+    <!-- Grid row -->
+    <div class="row mt-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold">Awashyak</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit odit laborum qui, debitis, sequi dolores nobis mollitia
+                  labore quasi earum laboriosam nihil cupiditate magnam iusto nostrum doloremque accusantium repudiandae
+                </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">About Awashyak</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a href="#!">About us</a>
+        </p>
+        <p>
+          <a href="#!">Blog</a>
+        </p>
+        <p>
+          <a href="#!">Become a partner</a>
+        </p>
+        <p>
+          <a href="#!">Work at Awashyak</a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a href="#!">Contact</a>
+        </p>
+        <p>
+          <a href="#!">Help Center</a>
+        </p>
+        <p>
+          <a href="#!">Donate</a>
+        </p>
+        <p>
+          <a href="#!">Featured courses</a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <i class="fas fa-home mr-3"></i> Kathmandu, Pradesh 3, Nepal</p>
+        <p>
+          <i class="fas fa-envelope mr-3"></i> info@example.com</p>
+        <p>
+          <i class="fas fa-phone mr-3"></i> +97798********</p>
+        <p>
+          <i class="fas fa-print mr-3"></i>+97798********</p>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+   Design by Abishek
+  </div>
+  <!-- Copyright -->
+
+
+
+
+</footer>
+<!-- Footer -->
+
+{% endblock %}
+
+    <script src="{% static 'assets/js/jquery.min.js'%}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js'%}"></script>
+</body>
+
+</html>
