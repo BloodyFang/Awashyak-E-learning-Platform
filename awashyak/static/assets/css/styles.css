@@ -49,13 +49,14 @@ body {
 #home-heading {
   position: relative;
   min-height: 200px;
-  background: url('../../assets/img/t-1.jpg');
+  background: url('../../assets/img/t-1.jp');
   background-attachment: fixed;
   background-repeat: no-repeat;
   text-align: center;
   color: #000;
   margin-top: 30px;
   font-weight: 600;
+
 }
 
 img {
@@ -73,4 +74,3 @@ img {
   height: 522px;
   width: 968px;
 }
-

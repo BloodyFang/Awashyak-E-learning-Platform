@@ -1,11 +1,195 @@
 
 {% extends 'index.html'%}
 
+{% load static %}
+
+{% block loadCss %}
+<link rel="stylesheet" href="{% static 'assets/css/userManagement.css'%}"/>
+{% endblock %}
 
 {% block content %}
+
+  <!-- HOME HEADING SECTION -->
+
+
+
+<div class="registerDiv">
+    <div class="login-box">
+
+
+        <div class="container">
+
+            <nav class="pillsNav">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link  active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Learner</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Student</a>
+                 
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    
+                  
+            <div class="register-content">
+    
+                <form method="POST" id="signup-form" class="signup-form">
+    
+                    <h2 class="form-title">Create Your Account</h2>
+                    
+                    <button class="loginBtn loginBtn--facebook">
+                        Create Account using Facebook
+                      </button>
+                      
+                      <button class="loginBtn loginBtn--google">
+                        Create Account using Google
+                      </button>
+                    
+    
+                    
+                    <div class="form-group user-box">
+                        <input type="text" class="form-input" name="firstName" placeholder="Your First Name" required/>
+                    </div>
+    
+                    <div class="form-group user-box ">
+                        <input type="text" class="form-input" name="lastName" placeholder="Your Last Name" required/>
+                    </div>
+    
+                    <div class="form-group user-box">
+                        <input type="email" class="form-input" name="email" placeholder="Your Email Address" required/>
+                    </div>
+    
+                    <div class="form-group user-box">
+                        <input type="password" class="form-input" name="password" placeholder="Enter Password" required min="7"/>
+                    </div>
+    
+                    <div class="form-group user-box">
+                        <input type="password" class="form-input" name="rePassword" placeholder="Enter Password Again" required min="7"/>
+                    </div>
+    
+                    <p class="text-white p1">By clicking Sign Up, you agree to our Terms of Use and our Privacy Policy.</p>
+                 
+                    <div class="regbtn">
+                        <a  href="#">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Register"/>
+                          </a>
+                    
+                    </div>
+                      
+    
+                 
+    
+                </form>
+                <p class="loginHere">
+                    Have already an account ? <a href="#" class="loginHere-link">Login here</a>
+                </p>
+    
+            </div>
+                
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    
+                    <div class="register-content">
+    
+                        <form method="POST" id="signup-form" class="signup-form">
+            
+                            <h2 class="form-title">Create Your Account</h2>
+                            
+                            <button class="loginBtn loginBtn--facebook">
+                                Create Account using Facebook
+                              </button>
+                              
+                              <button class="loginBtn loginBtn--google">
+                                Create Account using Google
+                              </button>
+                            
+            
+                            
+                            <div class="form-group user-box">
+                                <input type="text" class="form-input" name="firstName" placeholder="Your First Name" required/>
+                            </div>
+            
+                            <div class="form-group user-box ">
+                                <input type="text" class="form-input" name="lastName" placeholder="Your Last Name" required/>
+                            </div>
+            
+                            <div class="form-group user-box">
+                                <input type="email" class="form-input" name="email" placeholder="Your Email Address" required/>
+                            </div>
+            
+                            <div class="form-group user-box">
+                                <input type="password" class="form-input" name="password" placeholder="Enter Password" required min="7"/>
+                            </div>
+            
+                            <div class="form-group user-box">
+                                <input type="password" class="form-input" name="rePassword" placeholder="Enter Password Again" required min="7"/>
+                            </div>
+            
+                            <p class="text-white p1">By clicking register, you agree to our Terms of Use and our Privacy Policy.</p>
+                         
+                            <div class="regbtn">
+                                <a  href="#">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <input type="submit" name="submit" id="submit" class="form-submit" value="Register"/>
+                                  </a>
+                            
+                            </div>
+                              
+            
+                         
+            
+                        </form>
+                        <p class="loginHere">
+                            Have already an account ? <a href="#" class="loginHere-link">Login here</a>
+                        </p>
+            
+                    </div>
+                
+                </div>
+          
+              </div>
+    
+    
+        </div>
+
+    </div>
+   
+
+</div>
+   
+
+
 
 {% endblock %}
 
 {% block footer %}
 
 {% endblock %}
+
+{% block scripts %}
+
+<script>
+        
+    var password = document.getElementById("password")
+, confirm_password = document.getElementById("rePassword");
+
+function validatePassword(){
+if(password.value != confirm_password.value) {
+confirm_password.setCustomValidity("Passwords Did Not Match");
+} else {
+confirm_password.setCustomValidity('');
+}
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+    
+</script>
+    {% endblock %}
+

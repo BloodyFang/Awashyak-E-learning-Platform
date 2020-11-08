@@ -1,5 +1,6 @@
 
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 
@@ -11,19 +12,18 @@
   
     <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css'%}">
     <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{%static 'assets/fonts/fontawesome5-overrides.min.css'%}">
-    <link rel="stylesheet" href="{%static 'assets/css/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome5-overrides.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css'%}">
+
+    {% block loadCss %}
+    
+    {% endblock %}
 </head>
 
 <body class="links">
 
-
-
-
-
-
     <nav class="navbar navbar-light navbar-expand-md border rounded-0 shadow">
-        <div class="container-fluid"><a class="navbar-brand text-monospace" href="#"><strong>AwashYAK&nbsp;</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><a class="navbar-brand text-monospace text-info" href="#"><strong>AwashYAK&nbsp;</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav d-xl-flex mr-auto align-items-xl-center" style="padding: 0px;">
@@ -344,10 +344,15 @@
 </footer>
 <!-- Footer -->
 
+
+{% block scripts %}
+{% endblock %}
+
 {% endblock %}
 
     <script src="{% static 'assets/js/jquery.min.js'%}"></script>
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js'%}"></script>
+
 </body>
 
 </html>
