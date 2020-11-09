@@ -3,7 +3,7 @@
 .registerDiv
 {
     position: relative;
-    top: 90px;
+
     text-align: center;
     justify-content : center;
  
@@ -11,7 +11,7 @@
     margin-top:100px;
     color: red;
     position: absolute;
-    top: 50%;
+    top: 430px;
     left: 50%;
     width: 600px;
     padding: 40px;
@@ -21,6 +21,7 @@
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
+    
 
 
 }
@@ -120,13 +121,10 @@
   }
   
   .login-box a:hover {
-    background: #17a2b8;
+    background: #272343;
     color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #17a2b8,
-                0 0 25px #17a2b8,
-                0 0 50px #17a2b8,
-                0 0 100px #17a2b8;
+    border-radius: 1px;
+    
   }
   
   
@@ -318,4 +316,15 @@
   background: transparent;
   border: none !important;
   color: #03e9f4;
+  
 }
+
+.messages {
+  
+  list-style-type: none;
+  font-weight: 700;
+
+ 
+  
+}
+

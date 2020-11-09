@@ -11,9 +11,12 @@
 
   <!-- HOME HEADING SECTION -->
 
-
+ 
+ 
 
 <div class="registerDiv">
+
+    
     <div class="login-box">
 
 
@@ -22,7 +25,7 @@
             <nav class="pillsNav">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <a class="nav-item nav-link  active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Learner</a>
-                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Student</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Teacher</a>
                  
                 </div>
               </nav>
@@ -30,10 +33,28 @@
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     
                   
+
+               
+                    
+
             <div class="register-content">
+               
     
-                <form method="POST" id="signup-form" class="signup-form">
+                <form method="POST" id="signup-form" class="signup-form" action="save/">
     
+                    {% csrf_token %}
+
+                                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li  style="color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} {% endif %}
+                        {{ message }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
                     <h2 class="form-title">Create Your Account</h2>
                     
                     <button class="loginBtn loginBtn--facebook">
@@ -45,7 +66,11 @@
                       </button>
                     
     
-                    
+                    <input type="hidden" id="userType" name="userType" value="Learner">
+
+
+
+
                     <div class="form-group user-box">
                         <input type="text" class="form-input" name="firstName" placeholder="Your First Name" required/>
                     </div>
@@ -57,14 +82,20 @@
                     <div class="form-group user-box">
                         <input type="email" class="form-input" name="email" placeholder="Your Email Address" required/>
                     </div>
-    
+
                     <div class="form-group user-box">
-                        <input type="password" class="form-input" name="password" placeholder="Enter Password" required min="7"/>
+                        <input type="text" minlength="4" maxlength="32" class="form-input" name="userName" placeholder="Enter User Name" pattern="^[A-Za-z0-9_]{4,32}$" title="Your username can contain only letters, numbers, and underscores—no spaces are allowed." required/>
                     </div>
-    
+
+
                     <div class="form-group user-box">
-                        <input type="password" class="form-input" name="rePassword" placeholder="Enter Password Again" required min="7"/>
+                        <input type="password" class="form-input" name="password" placeholder="Enter Password"  minlength="7" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Your password should contain atleast one upperCase, one lowerCase and one number." required/>
                     </div>
+
+ 
+    
+               
+    
     
                     <p class="text-white p1">By clicking Sign Up, you agree to our Terms of Use and our Privacy Policy.</p>
                  
@@ -74,7 +105,7 @@
                             <span></span>
                             <span></span>
                             <span></span>
-                            <input type="submit" name="submit" id="submit" class="form-submit" value="Register"/>
+                            <input type="submit" name="submit" id="submit" class="form-submit btn btn-info" value="Register"/>
                           </a>
                     
                     </div>
@@ -86,16 +117,33 @@
                 <p class="loginHere">
                     Have already an account ? <a href="#" class="loginHere-link">Login here</a>
                 </p>
+               
     
             </div>
-                
+           
                 </div>
+
+          
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                     
                     <div class="register-content">
+               
     
-                        <form method="POST" id="signup-form" class="signup-form">
+                        <form method="POST" id="signup-form" class="signup-form" action="save/">
             
+                            {% csrf_token %}
+        
+                                            {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li  style="color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} {% endif %}
+                                {{ message }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+        
                             <h2 class="form-title">Create Your Account</h2>
                             
                             <button class="loginBtn loginBtn--facebook">
@@ -107,7 +155,11 @@
                               </button>
                             
             
-                            
+                            <input type="hidden" id="userType" name="userType" value="Teacher">
+        
+        
+        
+        
                             <div class="form-group user-box">
                                 <input type="text" class="form-input" name="firstName" placeholder="Your First Name" required/>
                             </div>
@@ -119,16 +171,20 @@
                             <div class="form-group user-box">
                                 <input type="email" class="form-input" name="email" placeholder="Your Email Address" required/>
                             </div>
-            
+        
                             <div class="form-group user-box">
-                                <input type="password" class="form-input" name="password" placeholder="Enter Password" required min="7"/>
+                                <input type="text" minlength="4" maxlength="32" class="form-input" name="userName" placeholder="Enter User Name" pattern="^[A-Za-z0-9_]{4,32}$" title="Your username can contain only letters, numbers, and underscores—no spaces are allowed." required/>
                             </div>
-            
+        
                             <div class="form-group user-box">
-                                <input type="password" class="form-input" name="rePassword" placeholder="Enter Password Again" required min="7"/>
+                                <input type="password" class="form-input" name="password" placeholder="Enter Password"  minlength="7"  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Your password should contain atleast one upperCase, one lowerCase and one number." required/>
                             </div>
+         
             
-                            <p class="text-white p1">By clicking register, you agree to our Terms of Use and our Privacy Policy.</p>
+                       
+            
+            
+                            <p class="text-white p1">By clicking Sign Up, you agree to our Terms of Use and our Privacy Policy.</p>
                          
                             <div class="regbtn">
                                 <a  href="#">
@@ -136,7 +192,7 @@
                                     <span></span>
                                     <span></span>
                                     <span></span>
-                                    <input type="submit" name="submit" id="submit" class="form-submit" value="Register"/>
+                                    <input type="submit" name="submit" id="submit" class="form-submit btn btn-info" value="Register"/>
                                   </a>
                             
                             </div>
@@ -148,8 +204,10 @@
                         <p class="loginHere">
                             Have already an account ? <a href="#" class="loginHere-link">Login here</a>
                         </p>
+                       
             
                     </div>
+                   
                 
                 </div>
           
@@ -162,7 +220,7 @@
    
 
 </div>
-   
+
 
 
 
@@ -172,24 +230,5 @@
 
 {% endblock %}
 
-{% block scripts %}
 
-<script>
-        
-    var password = document.getElementById("password")
-, confirm_password = document.getElementById("rePassword");
-
-function validatePassword(){
-if(password.value != confirm_password.value) {
-confirm_password.setCustomValidity("Passwords Did Not Match");
-} else {
-confirm_password.setCustomValidity('');
-}
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-    
-</script>
-    {% endblock %}
 
