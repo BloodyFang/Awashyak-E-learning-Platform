@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import *
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.db import IntegrityError
@@ -30,7 +31,7 @@ def userRegistrationSave(request):
                 raise IntegrityError
                 
 
-            elif  UserProfileInfo.objects.filter(email = request.POST.get('email')).exists():
+            elif  User.objects.filter(email = request.POST.get('email')).exists():
                 
                 errortype = "An account With This Email Already Exists."
                 raise IntegrityError
@@ -38,25 +39,26 @@ def userRegistrationSave(request):
 
             else:
 
-                user = User (
+                user = User.objects.create_user(
                 first_name = request.POST['firstName'],
                 last_name = request.POST['lastName'],
                 username = request.POST['userName'],
                 password = request.POST['password'],
+                email = request.POST['email'],
                 )
 
-          
+                user.save()
             
 
                 profile = UserProfileInfo (
-                    email = request.POST['email'],
+                    
                     userType = request.POST['userType'],
                     
                 )
 
             
 
-                user.save()
+             
                 profile.save()
 
 
@@ -69,45 +71,6 @@ def userRegistrationSave(request):
             return redirect('register')
 
 
-# def userRegistration(request):
-
-
-#     if request.method == "POST":
-#         user_form = userRegistrationForm(data= request.POST)
-#         profile_form = UserProfileInfoForm(data = request.POST)
-
-
-#         if user_form.is_valid and profile_form.is_valid:
-            
-#             user = user_form.save()
-#             user.set_password(user_form.cleaned_data['password'])
-#             user.save()
-
-#             profile = profile_form.save(commit=False)
-#             profile.user = user
-
-#             if 'profile_pic' in request.FILES:
-#                 profile.profile_pic = request.FILES['profile_pic']
-
-#             profile.save()
-
-#             return render(request,'register_done.html',{'new_user': user})
-
-#         else:
-#             print(user_form.errors,profile_form.errors)
-    
-#     else:
-
-#         user_form = userRegistrationForm()
-#         profile_form = UserProfileInfoForm
-
-
-
-#     return render(request,'register.html',
-#     {
-#         'user_form': user_form,
-#         'profile_form': profile_form
-#     })
 
 
 
@@ -116,4 +79,20 @@ def userRegistrationSave(request):
 def userLogin(request):
     return render(request,'login.html')
 
-    
+
+def loginAuth(request):
+    if request.method == "GET":
+        return render(request,'login.html')
+
+    else:
+
+        auth_user = authenticate(username = request.POST['email'], password= request.POST['password'])
+
+        if auth_user is not None:
+            login(request, auth_user)
+            return redirect('/')
+
+        else:
+            messages.error(request,"Invalid username or password.")
+            return redirect('login')
+

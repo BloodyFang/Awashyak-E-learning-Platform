@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'userManagementSystem',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'userManagementSystem.SettingsBackEnd.EmailBackend',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
