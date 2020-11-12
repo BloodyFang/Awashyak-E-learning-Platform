@@ -6,12 +6,12 @@ from django import forms
 
 class UserProfileInfo(models.Model):
 
-    user = models.OneToOneField(User, on_delete= models.CASCADE,primary_key=True)
+    user = models.OneToOneField(User, on_delete= models.CASCADE)
 
     #additional
    
     userType = models.CharField(max_length=150,null=False)
-    profilePic = models.ImageField(upload_to  = 'profile_pics', blank= True)
+    profilePic = models.ImageField(upload_to  = 'profile_pics/', blank= True)
 
     def __str__(self):
         return self.user.username

@@ -23,7 +23,7 @@
 <body class="links">
 
     <nav class="navbar navbar-light navbar-expand-md border rounded-0 shadow">
-        <div class="container-fluid"><a class="navbar-brand text-monospace text-info" href="#"><strong>AwashYAK&nbsp;</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><a class="navbar-brand text-monospace text-info" href="{% url 'index' %}"><strong>AwashYAK&nbsp;</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav d-xl-flex mr-auto align-items-xl-center" style="padding: 0px;">
@@ -32,9 +32,34 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">&nbsp; &nbsp;<input class="border rounded border-dark shadow-sm" type="search" placeholder="Search">&nbsp;<i class="fa fa-search"></i></a></li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Sign In&nbsp; &nbsp;|</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Register</a></li>
+
+                  {% if user.is_authenticated %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                      {{ user.first_name|upper }} {{ user.last_name|upper }}&nbsp; &nbsp;
+                    </a>
+                    
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                     {% if user.is_staff %}
+                     <a class="dropdown-item" href="#">Admin Panel</a>
+                     {% endif %}
+                      <a class="dropdown-item" href="/profile/{{ user.id }}">Profile</a>
+                      <a class="dropdown-item" href="#">Dashboard</a>
+                      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                  </li>   
+                    
+                 
+                
+                  {% else %}
+
+                  <li class="nav-item" role="presentation"></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'login'  %}">Login&nbsp; &nbsp;|</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+
+                  {% endif %}
                 </ul>
         </div>
         </div>

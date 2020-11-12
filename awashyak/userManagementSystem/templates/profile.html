@@ -1,0 +1,149 @@
+{% extends 'index.html'%}
+
+
+{% load static %}
+
+{% block loadCss %}
+<link rel="stylesheet" href="{% static 'assets/css/profilePage.css'%}"/>
+{% endblock %}
+
+
+{% block content %}
+<br><br>
+<div class="container">
+    <div class="row">
+            <div class="col-lg-4">
+               <div class="profile-card-4 z-depth-3">
+                <div class="card">
+                  <div class="card-body text-center bg-primary rounded-top">
+                   <div class="user-box">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                  </div>
+                  <h5 class="mb-1 text-white">{{ get_user_id.first_name|upper}} {{ get_user_id.last_name|upper}}</h5>
+                 
+                 </div>
+                  <div class="card-body">
+                    <ul class="list-group shadow-none">
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-user-circle"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{{ get_user_id.username }}</span>
+                        <small>User Name</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{{ get_user_id.email }}</span>
+                        <small>Email Address</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-users"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{{ get_profile_id.userType|upper}}</span>
+                        <small>User Type</small>
+                      </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="list-icon">
+                          <i class="fa fa-users"></i>
+                        </div>
+                        <div class="list-details">
+                          <span>{{ get_user_id.date_joined}}</span>
+                          <small>User Created Date</small>
+                        </div>
+                      </li>
+
+                      
+
+
+                    </ul>
+                    
+                   </div>
+                   <div class="card-footer text-center">
+                       <button class="btn btn-primary ">
+                        <a href="/update/{{get_user_id.id}}" class="btn-social  text-white">Edit Profile</a>
+                       </button>
+                    
+                     
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <div class="col-lg-8">
+               <div class="card z-depth-3">
+                <div class="card-body">
+                <ul class="nav nav-pills nav-pills-primary nav-justified">
+                    <li class="nav-item">
+                        <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">User Activity</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content p-3">
+                    <div class="tab-pane active show" id="profile">
+                        
+                        <div class="row">
+                            
+                            
+                            <div class="col-md-12">
+                                <h5 class="mt-2 mb-3"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
+                                <table class="table table-hover table-striped">
+                                    <tbody>                                    
+                                        <tr>
+                                            <td>
+                                                <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--/row-->
+                    </div>
+
+                </div>
+            </div>
+          </div>
+          </div>
+            
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<br><br><br>
+{% endblock %}

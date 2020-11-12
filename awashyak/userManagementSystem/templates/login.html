@@ -22,7 +22,7 @@
                   
             <div class="register-content">
     
-                <form method="POST" id="signup-form" class="signup-form" action="success/">
+                <form method="POST" id="signup-form" class="signup-form" action="success/" autocomplete="off">
 
                     {% csrf_token %}
 
@@ -51,7 +51,7 @@
                     
 
                     <div class="form-group user-box">
-                        <input type="text" class="form-input" name="email" placeholder="Your Email Address" required/>
+                        <input autocomplete="off" type="text" class="form-input" name="email" placeholder="Your Email Address" required/>
                     </div>
     
                     <div class="form-group user-box">
