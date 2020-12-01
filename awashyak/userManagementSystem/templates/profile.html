@@ -10,6 +10,7 @@
 
 {% block content %}
 <br><br>
+
 <div class="container">
     <div class="row">
             <div class="col-lg-4">
@@ -17,7 +18,19 @@
                 <div class="card">
                   <div class="card-body text-center bg-primary rounded-top">
                    <div class="user-box">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+
+                    
+                {% if get_profile_id.profilePic is None %}
+
+                <img src="/static/assets/img/profile.png" alt="" class="user avatar">
+
+
+                {% else %}
+
+                <img src="{{ get_profile_id.profilePic.url }}" alt="" class="user avatar">
+
+                {% endif %}
+              
                   </div>
                   <h5 class="mb-1 text-white">{{ get_user_id.first_name|upper}} {{ get_user_id.last_name|upper}}</h5>
                  
@@ -70,7 +83,11 @@
                    </div>
                    <div class="card-footer text-center">
                        <button class="btn btn-primary ">
-                        <a href="/update/{{get_user_id.id}}" class="btn-social  text-white">Edit Profile</a>
+                        <a href="/update/" class="btn-social  text-white">Edit Profile</a>
+                       </button>
+
+                       <button class="btn btn-danger ">
+                        <a href="{% url 'delete' %}" class="btn-social  text-white">Delete Profile</a>
                        </button>
                     
                      

@@ -38,16 +38,31 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
                       {{ user.first_name|upper }} {{ user.last_name|upper }}&nbsp; &nbsp;
+                    
                     </a>
                     
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                      {% if user.is_staff %}
-                     <a class="dropdown-item" href="#">Admin Panel</a>
+                     <a class="dropdown-item" href="http://127.0.0.1:8000/admin">Admin Panel</a>
+                     <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                     
+
+
+                     {% else %}
+                     <a class="dropdown-item" href="/profile/">Profile</a>
+
+                     {% if user.userprofileinfo.userType == 'Learner'%}
+                     <a class="dropdown-item" href="#">Dashboard</a>
+                      {% else %}
+                      <a class="dropdown-item" href="#">Teacher Dashboard</a>
+                      {%endif%}
+
+                     <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+
                      {% endif %}
-                      <a class="dropdown-item" href="/profile/{{ user.id }}">Profile</a>
-                      <a class="dropdown-item" href="#">Dashboard</a>
-                      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+
+                     
                     </div>
                   </li>   
                     

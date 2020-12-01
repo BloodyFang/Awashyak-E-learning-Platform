@@ -55,6 +55,8 @@
                     </ul>
                     {% endif %}
 
+                  
+
                     <h2 class="form-title">Create Your Account</h2>
                     
                     <button class="loginBtn loginBtn--facebook">
@@ -133,7 +135,7 @@
             
                             {% csrf_token %}
         
-                                            {% if messages %}
+                            {% if messages %}
                             <ul class="messages">
                                 {% for message in messages %}
                                 <li  style="color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
@@ -178,7 +180,7 @@
                             </div>
         
                             <div class="form-group user-box">
-                                <input type="password" class="form-input" name="password" placeholder="Enter Password"  minlength="7"  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Your password should contain atleast one upperCase, one lowerCase and one number." required/>
+                                <input type="password" class="form-input" name="password" placeholder="Enter Password"  minlength="8"  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Your password should contain atleast one upperCase, one lowerCase and one number." required/>
                             </div>
          
             

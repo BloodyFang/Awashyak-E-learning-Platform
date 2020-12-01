@@ -59,7 +59,7 @@
                     </div>
     
                     <p  class="loginHereLink">
-                        <a href="#" >Forget Password?</a>
+                        <a href="{% url "password_reset" %}">Forget Password?</a>
                     </p>
                    
                     
@@ -99,25 +99,3 @@
 {% block footer %}
 
 {% endblock %}
-
-{% block scripts %}
-
-<script>
-        
-    var password = document.getElementById("password")
-, confirm_password = document.getElementById("rePassword");
-
-function validatePassword(){
-if(password.value != confirm_password.value) {
-confirm_password.setCustomValidity("Passwords Did Not Match");
-} else {
-confirm_password.setCustomValidity('');
-}
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-    
-</script>
-    {% endblock %}
-

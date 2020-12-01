@@ -11,7 +11,7 @@ class UserProfileInfo(models.Model):
     #additional
    
     userType = models.CharField(max_length=150,null=False)
-    profilePic = models.ImageField(upload_to  = 'profile_pics/', blank= True)
+    profilePic = models.ImageField(upload_to  = 'profile_pics/', blank= True, default ='profile.png')
 
     def __str__(self):
         return self.user.username

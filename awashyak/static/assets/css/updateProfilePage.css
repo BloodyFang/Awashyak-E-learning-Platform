@@ -1,7 +1,7 @@
 
 
 .ui-w-80 {
-    width: 80px !important;
+    width: 240px !important;
     height: auto;
 }
 
@@ -95,5 +95,12 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     border-color: rgba(24,28,33,0.03) !important;
 }
 
-
+.messages {
+  
+    list-style-type: none;
+    font-weight: 700;
+  
+   
+    
+  }
 

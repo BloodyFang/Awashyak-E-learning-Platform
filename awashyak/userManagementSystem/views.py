@@ -6,12 +6,16 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.db import IntegrityError
 from userManagementSystem.models import UserProfileInfo
+from django.contrib.auth.decorators import login_required
+from userManagementSystem.decorator import login_excluded
+from django.contrib.auth.hashers import check_password
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
 
 # user registration page
-
+@login_excluded('index')
 def userRegistration(request):
     return render(request,'register.html')
 
@@ -85,6 +89,7 @@ def userRegistrationSave(request):
 
 
 #user login page
+@login_excluded('index')
 def userLogin(request):
     return render(request,'login.html')
 
@@ -111,22 +116,25 @@ def logoutView(request):
     logout(request)
     return redirect('/')
 
-
-def profilePage(request,id):
+@login_required(login_url='login')
+def profilePage(request):
+    id = request.user.id
     get_user_id = User.objects.get(id = id)
     get_profile_id = UserProfileInfo.objects.get(user_id = id)
     return render(request,'profile.html',{'get_profile_id':get_profile_id, 'get_user_id':get_user_id})
 
-
-def updateProfilePage(request,id):
+@login_required(login_url='login')
+def updateProfilePage(request):
+    id = request.user.id
     get_user_id = User.objects.get(id = id)
     get_profile_id = UserProfileInfo.objects.get(user_id = id)
     return render(request,'updateProfile.html',{'get_profile_id':get_profile_id, 'get_user_id':get_user_id})
 
 
+@login_required(login_url='login')
+def updateProfile(request):
 
-def updateProfile(request,id):
-
+    id = request.user.id
     errortype = ""
 
     if request.method == "GET":
@@ -162,7 +170,7 @@ def updateProfile(request,id):
                     user.first_name = request.POST['update_firstName']
                     user.last_name = request.POST['update_lastName']
                     user.username = request.POST['update_userName']
-                    email = request.POST['update_email']
+                    user.email = request.POST['update_email']
                     user.save()
 
                        
@@ -171,7 +179,7 @@ def updateProfile(request,id):
                     profile = UserProfileInfo.objects.get(user_id = id)
 
                     profile.userType = request.POST['update_userType']
-                    profile.profilePic = request.FILES['profilePic']
+                    profile.profilePic = request.FILES.get('profilePic',profile.profilePic)
                         
 
                 
@@ -181,15 +189,65 @@ def updateProfile(request,id):
 
 
 
-                    messages.info(request, "Successfully Created Your Account. You Can Login.".upper())
-                    return redirect('register')
+                   
+                    return redirect('profile')
 
         except IntegrityError:
             messages.info(request, errortype.upper())
-            return redirect('register')
+            return redirect('update')
+
+
+def deleteProfile(request):
+
+    get_user_id = request.user.id
+    get_user = User.objects.get(id = get_user_id)
+    get_user.delete()
+    return redirect('index')
+        
+
+
+def changePassword(request):
+
+    if request.method == "GET":
+        return render(request,'profile.html')
+
+    else:
+
+        get_id = request.user.id
+        user = User.objects.get(id=get_id)
+
+       
+        check_password = request.POST.get('check_password')
+        update_password = request.POST['update_password']
+        check_update_password = request.POST['check_update_password']
+        pwd_valid = user.check_password(check_password)
+
+
+        #pwd_valid = check_password(check_password,user_password)
+
+        if pwd_valid:
+
+            if update_password == check_update_password:
+                user.set_password(update_password)
+                messages.info(request, 'password changed successfully.You should login again.'.upper() )
+                user.save()
+                return redirect('update')
+            
+            else:
+                messages.info(request, 'New password and repeat Password did not match.'.upper() )
+                return redirect('update')
+
+        else:
+            messages.info(request,'Password did not match.Please try again.'.upper())
+            return redirect('update')
+
+                
+def studentDashboard(request):
+    return render(request, 'studentDashboard.html')
 
       
-
+def teacherDashboard(request):
+    return render(request, 'teacherDashboard.html')
 
 
 
