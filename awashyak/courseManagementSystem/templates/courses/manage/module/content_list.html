@@ -1,0 +1,162 @@
+
+{% extends 'index.html'%}
+
+{% load course %}
+
+{% load static %}
+
+{% block loadCss %}
+<link rel="stylesheet" href="{% static 'assets/css/list.css'%}"/>
+{% endblock %}
+
+{% block searchSubject %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+{% if request.user.userprofileinfo.userType == 'Teacher'%}
+
+{% with course=module.course %}
+<div class="text-center text-white p-3 bg-info">
+    <h2>Course "{{ course.title }}"</h2>
+</div>
+<br><br>
+<div class="d-flex bg-light container">
+    <div class="contents text-center">
+        
+        <h3>Modules</h3>
+
+
+        <ul id = "modules">
+    
+            {% for m in course.modules.all %}
+    
+                <li data-id="{{ m.id }}" {% if m == module %}
+                    class="selected"{%endif%}
+                >
+    
+                <a href="{% url "module_content_list" m.id %}">
+                    
+                    <span>
+                        Module <span class="order">
+                            {{m.order | add:1}}
+                        </span>
+                    </span>
+                    <br>
+                    {{m.title}}
+                </a>
+                </li>
+            {% empty %}
+    
+                <li>No Modules Yet</li>
+            {% endfor %}
+        </ul>
+    
+        <p><a href="{% url "course_module_update" course.id %}">Edit Modules</a></p>
+    
+    
+    
+    </div>
+    
+ 
+    <div class="module container">
+        <br>
+        <h2>Module {{ module.order|add:1 }}: {{ module.title }}</h2>
+        <h3>Module Contents: </h3>
+        <br>    
+        <div id = "module-contents">
+            {% for content in module.contents.all%}
+    
+                <div data-id = "{{ content.id }}">
+                    {% with item=content.item %}
+                    <p>{{ item }} ({{ item|model_name }})</p>
+                        <a href="{% url "module_content_update" module.id item|model_name item.id %}">Edit</a>
+                        <form action="{% url "module_content_delete" content.id %}" method="post">
+                            <input type="submit" value = "Delete">
+                            {% csrf_token %}
+                        </form>
+    
+                    {% endwith %}
+                </div>
+                {% empty %}
+    
+                    <p>This module has no contents yet.</p>
+    
+                {% endfor %}
+        </div>
+    
+        <h3>Add New Content:</h3>
+        <ul class="content-types">
+            <li>
+                <a href="{% url "module_content_create" module.id "text" %}">
+                    Text
+                </a>
+            </li>
+    
+            <li>
+                <a href="{% url "module_content_create" module.id "image" %}">
+                    Image
+                </a>
+            </li>
+    
+            <li>
+                <a href="{% url "module_content_create" module.id "Video" %}">
+                    Video
+                </a>
+            </li>
+    
+            <li>
+                <a href="{% url "module_content_create" module.id "file" %}">
+                    File
+                </a>
+            </li>
+    
+        </ul>
+    
+    </div>
+    {% endwith %}
+    
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% else %}
+
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h3>Oops! Permission Denied</h3>
+            <h1><span>4</span><span>0</span><span>3</span></h1>
+        </div>
+        <h2>we are sorry, but the page you requested was has permission denied</h2>
+    </div>
+</div>
+
+
+{% endif %}
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

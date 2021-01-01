@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('',views.renderIndexPage, name='index'),
     path('', include('userManagementSystem.urls')),
-    path('',include('courseManagementSystem.urls')),
+    path('course/',include('courseManagementSystem.urls')),
   
 ]
 

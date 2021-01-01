@@ -1,0 +1,71 @@
+
+{% extends 'index.html'%}
+
+{% load static %}
+
+{% block loadCss %}
+<link rel="stylesheet" href="{% static 'assets/css/list.css'%}"/>
+{% endblock %}
+
+{% block searchSubject %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="text-center">
+    <h1 class="bg-info p-2 text-white"> My Courses</h1>
+</div>
+
+<br>
+{% if request.user.userprofileinfo.userType == 'Teacher'%}
+<div class="d-flex justify-content-center">
+  
+<div class="module">
+{% for course in object_list %}
+<div class="course-info">
+<h3>{{ course.title }}</h3>
+<p>
+<a href="{% url "course_edit" course.id %}">Edit</a>
+<a href="{% url "course_delete" course.id %}">Delete</a>
+<a href="{% url "course_module_update" course.id %}">Edit Modules</a>
+{% if course.modules.count > 0 %}
+<a href="{% url "module_content_list" course.modules.first.id %}"> Manage Contents </a>
+{% endif %}
+</p>
+</div>
+{% empty %}
+<p>You haven't created any courses yet.</p>
+{% endfor %}
+<p>
+<a href="{% url "course_create" %}" class="button">Create new
+course</a>
+</p>
+</div>
+</div>
+
+{% else %}
+
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h3>Oops! Permission Denied</h3>
+            <h1><span>4</span><span>0</span><span>3</span></h1>
+        </div>
+        <h2>we are sorry, but the page you requested was has permission denied</h2>
+    </div>
+</div>
+
+
+{% endif %}
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

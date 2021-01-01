@@ -1,0 +1,56 @@
+
+{% extends 'index.html'%}
+
+{% load static %}
+
+{% block loadCss %}
+<link rel="stylesheet" href="{% static 'assets/css/list.css'%}"/>
+{% endblock %}
+
+{% block searchSubject %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+{% if request.user.userprofileinfo.userType == 'Teacher'%}
+<div class="text-center">
+    <h2 class="bg-info p-3 text-white">Delete Course "{{ object.title }}"</h2>
+</div>
+
+<br>
+<div class="container d-flex justify-content-center">
+<form action="" method="post">
+{% csrf_token %}
+<p class="text-danger h2">Are you sure you want to delete "{{ object }}"?</p>
+
+<input class="del" type="submit" value="Confirm">
+
+</form>
+</div>
+
+{% else %}
+
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h3>Oops! Permission Denied</h3>
+            <h1><span>4</span><span>0</span><span>3</span></h1>
+        </div>
+        <h2>we are sorry, but the page you requested was has permission denied</h2>
+    </div>
+</div>
+
+
+{% endif %}
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

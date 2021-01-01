@@ -28,9 +28,12 @@
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav d-xl-flex mr-auto align-items-xl-center" style="padding: 0px;">
                     <li class="nav-item" role="presentation"></li>
+                  {% block searchSubject %}
                     <li class="nav-item" role="presentation"><a class="nav-link border-primary shadow" href="#">Subjects</a></li>
+                    
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">&nbsp; &nbsp;<input class="border rounded border-dark shadow-sm" type="search" placeholder="Search">&nbsp;<i class="fa fa-search"></i></a></li>
-                </ul>
+                  {% endblock %}
+                  </ul>
                 <ul class="nav navbar-nav ml-auto">
 
                   {% if user.is_authenticated %}
@@ -55,7 +58,7 @@
                      {% if user.userprofileinfo.userType == 'Learner'%}
                      <a class="dropdown-item" href="#">Dashboard</a>
                       {% else %}
-                      <a class="dropdown-item" href="#">Teacher Dashboard</a>
+                      <a class="dropdown-item" href="{% url 'teacherDashboard' %}">Teacher Dashboard</a>
                       {%endif%}
 
                      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>

@@ -2,6 +2,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
+from django.conf import settings
+
+# This class helps to authenticate with user email.
+
+
 
 class EmailBackend(BaseBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
@@ -21,3 +26,6 @@ class EmailBackend(BaseBackend):
             return UserModel.objects.get(pk=user_id)
         except UserModel.DoesNotExist:
             return None
+
+    def has_perm(self, user_obj, perm, obj=None):
+        return True

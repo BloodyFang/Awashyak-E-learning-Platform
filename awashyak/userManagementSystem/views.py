@@ -14,11 +14,12 @@ from django.http import HttpResponseRedirect
 
 # Create your views here.
 
-# user registration page
+# Render User registration page
 @login_excluded('index')
 def userRegistration(request):
     return render(request,'register.html')
 
+# User who provide registration information will be store by this method.
 def userRegistrationSave(request):
     
     errortype = ""
@@ -28,13 +29,13 @@ def userRegistrationSave(request):
 
     else:
         try:
-
+            #checks username is unique or not
             if User.objects.filter(username = request.POST.get('userName')).exists():
 
                 errortype = "User Name Already Exist. Please Try Again With Unique User Name."
                 raise IntegrityError
                 
-
+            #checks email is unique or not
             elif  User.objects.filter(email = request.POST.get('email')).exists():
                 
                 errortype = "An account With This Email Already Exists."
@@ -42,7 +43,7 @@ def userRegistrationSave(request):
                 
 
             else:
-
+                #Gets the data from form fields and store the data into database
                 user = User.objects.create_user(
                 first_name = request.POST['firstName'],
                 last_name = request.POST['lastName'],
@@ -93,13 +94,15 @@ def userRegistrationSave(request):
 def userLogin(request):
     return render(request,'login.html')
 
-
+# Checks the user credentials is valid or not and redirect to home page.
 def loginAuth(request):
     if request.method == "GET":
         return render(request,'login.html')
 
     else:
-
+        # Check the email and password is valid or not with the help from SettingsBackEnd.py
+        # SettingsBackEnd helps to authenticate because default django authentication authenticate by username only
+        # In order to authenticate with user we have to build custom SettingsBackEnd.py to authenticate with user email address. 
         auth_user = authenticate(username = request.POST['email'], password= request.POST['password'])
 
         if auth_user is not None:
@@ -112,10 +115,13 @@ def loginAuth(request):
             messages.error(request,"Invalid username or password.")
             return redirect('login')
 
+# Logout the user and their session
 def logoutView(request):
     logout(request)
     return redirect('/')
 
+# login_required is django decorators helps to authenticates users allowed to view which are allowed
+# to visit who are authenticated.
 @login_required(login_url='login')
 def profilePage(request):
     id = request.user.id
@@ -132,6 +138,7 @@ def updateProfilePage(request):
 
 
 @login_required(login_url='login')
+# updates profile information
 def updateProfile(request):
 
     id = request.user.id
@@ -196,7 +203,7 @@ def updateProfile(request):
             messages.info(request, errortype.upper())
             return redirect('update')
 
-
+# deletes user information form database
 def deleteProfile(request):
 
     get_user_id = request.user.id
@@ -205,7 +212,7 @@ def deleteProfile(request):
     return redirect('index')
         
 
-
+# changes user password
 def changePassword(request):
 
     if request.method == "GET":
@@ -241,11 +248,11 @@ def changePassword(request):
             messages.info(request,'Password did not match.Please try again.'.upper())
             return redirect('update')
 
-                
+# render student dashboard       
 def studentDashboard(request):
     return render(request, 'studentDashboard.html')
 
-      
+# render teacher dashboard 
 def teacherDashboard(request):
     return render(request, 'teacherDashboard.html')
 
