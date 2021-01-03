@@ -1,20 +1,24 @@
 from django.shortcuts import render
-from .models import Course, Module, Content
+from .models import Course, Module, Content, Subject
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Course
-from .forms import ModuleFormSet
+from .forms import ModuleFormSet, CourseEnrollForm
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic.base import TemplateResponseMixin, View
 from django.forms.models import modelform_factory
 from django.apps import apps 
 from django.contrib.auth.models import User
+from django.db.models import Count
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+# from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 
 # Create your views here.
 
-def renderCoursePage(request):
-    return render(request,'coursePage.html')
 
 
 # Need to provide a specific behaviour for several class-based
@@ -175,3 +179,95 @@ class ModuleContentListView(TemplateResponseMixin,View):
     def get(self,request,module_id):
         module = get_object_or_404(Module, id = module_id, course__owner = request.user)
         return self.render_to_response({'module': module})
+
+
+
+# Handles students enrolling on courses
+class StudentEnrollCourseView(LoginRequiredMixin,FormView):
+    course = None
+    form_class = CourseEnrollForm
+
+    def form_valid(self,form):
+        self.course = form.cleaned_data['course']
+        self.course.students.add(self.request.user)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('student_course_detail', args=[self.course.id])
+
+
+
+
+
+# Retrieve all available courses
+class CourseListView(TemplateResponseMixin, View):
+    model = Course
+    template_name = 'courses/course/list.html'
+
+    def get(self,request,subject=None):
+        subjects = Subject.objects.annotate(total_courses=Count('courses'))
+        courses = Course.objects.annotate(total_modules=Count('modules'))
+
+        if subject:
+            subject = get_object_or_404(Subject, slug = subject)
+            courses = courses.filter(subject = subject)
+        return self.render_to_response({'subjects':subjects,'subject':subject,'courses':courses})
+
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = 'courses/course/detail.html'
+
+    #Include the enrollment form in the context for rendering the templates
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['enroll_form'] = CourseEnrollForm(initial = {'course':self.object})
+        
+        return context
+
+
+# To see courses that students are enrolled on.
+class StudentCourseListView(LoginRequiredMixin, ListView):
+    model = Course
+    template_name = 'students/course/list.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(students__in=[self.request.user])
+
+
+class StudentCourseDetailView(DetailView):
+    model = Course
+    template_name = 'students/course/detail.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(students__in = [self.request.user])
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        #get course object
+        course = self.get_object()
+        if 'module_id' in self.kwargs:
+            #get current module
+            context['module'] = course.modules.get(id = self.kwargs['module_id'])
+        
+        else:
+            #get first module
+            context['module'] = course.modules.all()[0]
+        return context
+
+# class ModuleOrderView(CsrfExemptMixin,JsonRequestResponseMixin,View):
+#     def post(self,request):
+#         for id, order in self.request_json.item():
+#             Module.objects.filter(id = id , course__owner = request.user).update(order = order)
+#         return self.render_json_response({'saved':'OK'})
+
+# class ContentOrderView(CsrfExemptMixin,JsonRequestResponseMixin,View):
+#     def post(self,request):
+#         for id, order in self.request_json.items():
+#             Content.objects.filter(id = id, module__course__owner = request.user).update(order = order)
+#         return self.render_json_response({'saved':'OK'})
+
+
+
+

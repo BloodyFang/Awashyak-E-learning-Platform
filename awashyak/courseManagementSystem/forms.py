@@ -5,3 +5,7 @@ from .models import Course, Module
 # ModuleFormset helps to work with multiple forms on the same page.
 # inlineformset_factory helps to build a model formset dynamically for the Module objects realted to a Course Object.
 ModuleFormSet = inlineformset_factory(Course,Module,fields=['title','description'],extra=2,can_delete=True)
+
+#This form is for students to enroll on courses
+class CourseEnrollForm(forms.Form):
+    course = forms.ModelChoiceField(queryset = Course.objects.all(),widget = forms.HiddenInput)

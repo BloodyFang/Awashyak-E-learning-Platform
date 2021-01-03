@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
    
-    path('coursePage/',views.renderCoursePage, name='coursePage'),
+
     path('mine/', views.ManageCourseListView.as_view(), name = 'manage_course_list'),
     path('create/',views.CourseCreateView.as_view(),name='course_create'),
     path('<pk>/edit/', views.CourseUpdateView.as_view(), name = 'course_edit'),
@@ -15,4 +15,12 @@ urlpatterns = [
     path('module/<int:module_id>/content/<model_name>/<id>/', views.ContentCreateUpdateView.as_view(),name = 'module_content_update'),  
     path('content/<int:id>/delete', views.ContentDeleteView.as_view(), name = 'module_content_delete'),
     path('module/<int:module_id>/', views.ModuleContentListView.as_view(), name = 'module_content_list'),
+    path('subject/<slug:subject>/',views.CourseListView.as_view(),name = 'course_list_subject'),
+    path('<slug:slug>/',views.CourseDetailView.as_view(), name = 'course_detail'),
+    path('enroll-course',views.StudentEnrollCourseView.as_view(),name = 'student_enroll_course'),
+    path('courses/', views.StudentCourseListView.as_view(), name='student_course_list'),
+    path('course/<pk>/',views.StudentCourseDetailView.as_view(), name = 'student_course_detail'),
+    path('course/<pk>/<module_id>/', views.StudentCourseDetailView.as_view(), name = 'student_course_detail_module'),
+    # path('module/order/',views.ModuleOrderView.as_view(),name = 'module_order'),
+    # path('content/order/',views.ContentOrderView.as_view(),name = 'content_order'),
 ]

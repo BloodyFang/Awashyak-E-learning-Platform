@@ -1,0 +1,50 @@
+{% extends 'index.html'%}
+
+{% load static %}
+
+{% block loadCss %}
+<link rel="stylesheet" href="{% static 'assets/css/list.css'%}"/>
+{% endblock %}
+
+{% block content %}
+    {% with subject=object.subject %}
+    <h1>
+        {{object.title}}
+    </h1>
+    <div class="module">
+        <h2>Overview</h2>
+        <p>
+            <a href="{% url "course_list_subject" subject.slug %}">
+                {{subject.title}}
+
+            </a>.{{object.modules.count}} modules. Instructor: {{object.owner.get_full_name}}
+        </p>
+        {{ object.overview|linebreaks}}
+
+        {% if request.user.is_authenticated and request.user.userprofileinfo.userType == 'Learner'%}
+
+        <form action="{% url "student_enroll_course" %}" method="post">
+            {{enroll_form}}
+            {% csrf_token %}
+            <input type="submit" value="ENROLL NOW">
+
+        </form>
+        {% else %}
+        <a href="{% url "register" %}" class="button">
+            REGISTER AS LEARNER TO ENROLL
+        </a>
+
+        {% endif %}
+
+    </div>
+
+    {% endwith %}
+    {% endblock %}
+
+
+
+
+
+{% block footer %}
+
+{% endblock %}

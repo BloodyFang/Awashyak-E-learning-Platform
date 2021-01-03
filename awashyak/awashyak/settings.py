@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userManagementSystem',
     'courseManagementSystem',
+    'embed_video',
     
 ]
 
@@ -139,3 +140,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'djangomailtest33@gmail.com' 
 EMAIL_HOST_PASSWORD = 'dj@ngoabishek21'
+
+from django.urls import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')

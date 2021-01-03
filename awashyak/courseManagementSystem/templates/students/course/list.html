@@ -1,0 +1,39 @@
+{% extends 'index.html'%}
+
+{% load static %}
+
+{% block loadCss %}
+<link rel="stylesheet" href="{% static 'assets/css/list.css'%}"/>
+{% endblock %}
+
+{% block content %}
+
+<h1> My courses</h1>
+<div class = "module">
+    {% for course in object_list %}
+
+    <div class="course-info">
+        <h3>{{course.title}}</h3>
+        <p><a href="{% url "student_course_detail" course.id %}"> ACCESS CONTENTS</a></p>
+    </div>
+
+    {% empty %}
+    <p>
+        You are not enrolled in any courses yet.
+        <a href="{% url "course_list" %}">Browse Courses</a> to enroll in a course.
+    </p>
+
+
+
+
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

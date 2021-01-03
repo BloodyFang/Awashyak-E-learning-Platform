@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from awashyak import views
+from courseManagementSystem.views import CourseListView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -24,6 +25,7 @@ urlpatterns = [
     path('',views.renderIndexPage, name='index'),
     path('', include('userManagementSystem.urls')),
     path('course/',include('courseManagementSystem.urls')),
+    path('list/',CourseListView.as_view(), name = 'course_list')
   
 ]
 
