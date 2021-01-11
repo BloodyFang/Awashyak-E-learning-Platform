@@ -3,49 +3,89 @@
 {% load static %}
 
 {% block loadCss %}
-<link rel="stylesheet" href="{% static 'assets/css/list.css'%}"/>
+<link rel="stylesheet" href="{% static 'assets/css/course_list.css'%}"/>
 {% endblock %}
 
 {% block content %}
-<h1>
+<!-- <h1 class="hOne">
 {% if subject %}
 {{ subject.title }} courses
 {% else %}
 All courses
 {% endif %}
-</h1>
+</h1> -->
 <div class="contents">
-<h3>Subjects</h3>
+<h3 class="hOne">Subject</h3>
 <ul id="modules">
 <li {% if not subject %}class="selected"{% endif %}>
-<a href="{% url "course_list" %}">All</a>
+<a href="{% url "course_list" %}">All Subjects</a>
 </li>
 {% for s in subjects %}
 <li {% if subject == s %}class="selected"{% endif %}>
 <a href="{% url "course_list_subject" s.slug %}">
 {{ s.title }}
-<br><span>{{ s.total_courses }} courses</span>
+<!-- <br><span>{{ s.total_courses }} courses</span> -->
 </a>
 </li>
 {% endfor %}
 </ul>
 </div>
 <div class="module">
+    <div class="grid-container">
 {% for course in courses %}
 {% with subject=course.subject %}
-<h3>
-<a href="{% url "course_detail" course.slug %}">
-{{ course.title }}
-</a>
-</h3>
-<p>
-<a href="{% url "course_list_subject" subject.slug %}">{{ subject }}</a>.
-{{ course.total_modules }} modules.
-Instructor: {{ course.owner.get_full_name }}
-</p>
+
+
+
+
+    <div class="grid-item">
+        
+        <h3 class="hThree">
+            <a href="{% url "course_detail" course.slug %}">
+                {{course.title}}
+            </a>
+        </h3>
+        
+        
+            <p>
+            
+                {{course.overview}}
+
+                
+            
+            </p>
+
+           
+               
+      
+                <a class="btnfindOut" href="{% url "course_detail" course.slug %}">
+                    Find Out More » 
+                </a>
+           
+            
+          
+            
+        
+            
+          
+            
+    </div>
+  
+
+   
+
+
+
 {% endwith %}
+
+
 {% endfor %}
 </div>
+
+
+</div>
+
+
 {% endblock %}
 
 

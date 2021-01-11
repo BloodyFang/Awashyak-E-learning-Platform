@@ -1,0 +1,27 @@
+
+.subject{
+    position: absolute;
+   
+    font-size: 25px;
+    right:47%;
+    top: 16px;
+    font-weight: bolder;
+}
+
+
+.form-control:focus {
+    box-shadow: none;
+  }
+  
+  .form-control-underlined {
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-radius: 0;
+    padding-left: 0;
+  }
+  
+  .form-control::placeholder {
+    font-size: 0.95rem;
+    color: #000;
+    font-style: italic;
+  }

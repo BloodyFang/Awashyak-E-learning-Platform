@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome5-overrides.min.css'%}">
     <link rel="stylesheet" href="{% static 'assets/css/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/nav.css'%}">
 
     {% block loadCss %}
     
@@ -23,15 +24,31 @@
 <body class="links">
 
     <nav class="navbar navbar-light navbar-expand-md border rounded-0 shadow">
-        <div class="container-fluid"><a class="navbar-brand text-monospace text-info" href="{% url 'index' %}"><strong>AwashYAK&nbsp;</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><a class="navbar-brand text-monospace text-info" style="font-size: 30px;" href="{% url 'index' %}"><strong>AwashYAK&nbsp;</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav d-xl-flex mr-auto align-items-xl-center" style="padding: 0px;">
-                    <li class="nav-item" role="presentation"></li>
-                  {% block searchSubject %}
-                    <li class="nav-item" role="presentation"><a class="nav-link " href="{% url 'course_list' %}">Subjects</a></li>
                     
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">&nbsp; &nbsp;<input class="border rounded border-dark shadow-sm" type="search" placeholder="Search">&nbsp;<i class="fa fa-search"></i></a></li>
+                  {% block searchSubject %}
+                 
+                    <li class="nav-item" role="presentation">
+                      <a class="subject text-info" href="{% url 'course_list' %}">SUBJECTS</a></li>
+                  
+                      <form>
+
+                     
+                      <div class="p-1 bg-light rounded rounded-pill shadow-sm ">
+                        <div class="input-group">
+                          <input type="search" placeholder="Search" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                          <div class="input-group-append">
+                            <button id="button-addon1" type="submit" class="btn btn-link text-info"><i class="fa fa-search"></i></button>
+                          </div>
+                        </div>
+                      </div>
+
+                    </form>
+                    
+                   
                   {% endblock %}
                   </ul>
                 <ul class="nav navbar-nav ml-auto">
@@ -91,6 +108,8 @@
         <div class="links"><a href="#">Register Now</a></div><img class="img-fluid img1" src="{% static 'assets/img/study1%20(2).png'%}" style="background-repeat: no-repeat;height: 522px;width: 1127px;">
     </section>
 
+  
+
     <section class="section1 study1">
         <h1>Study Anywhere, Anytime</h1>
         <h2><br>Develop your career, develop yourself, and pursue your study with flexible online courses.<br></h2>
@@ -102,6 +121,10 @@
         <h2><br>Meet educators, who'll share their experience and teach you through videos, articles, quizzes and&nbsp;discussions.<br></h2>
         <div class="links"><a href="#">About Us</a></div><img class="img-fluid img1" src="{% static 'assets/img/teacher.jpg' %}">
   </section> 
+
+  
+  
+
   
   <!-- HOME HEADING SECTION -->
   <section id="home-heading" class="p-5">
