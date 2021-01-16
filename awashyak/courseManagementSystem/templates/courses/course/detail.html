@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block loadCss %}
-<link rel="stylesheet" href="{% static 'assets/css/list.css'%}"/>
+<link rel="stylesheet" href="{% static 'assets/css/detail.css'%}"/>
 {% endblock %}
 
 {% block content %}
@@ -13,28 +13,36 @@
     </h1>
     <div class="module">
         <h2>Overview</h2>
-        <p>
-            <a href="{% url "course_list_subject" subject.slug %}">
-                {{subject.title}}
 
-            </a>.{{object.modules.count}} modules. Instructor: {{object.owner.get_full_name}}
-        </p>
+       
+            <p>
+                <a href="{% url "course_list_subject" subject.slug %}">
+                    {{subject.title}}
+    
+                </a><br>{{object.modules.count}} modules <br>Instructor: {{object.owner.get_full_name}}
+            </p>
+            <br>
+       <div class="container">
         {{ object.overview|linebreaks}}
-
+       </div>
+        <br>
+       <div class="form">
         {% if request.user.is_authenticated and request.user.userprofileinfo.userType == 'Learner'%}
 
         <form action="{% url "student_enroll_course" %}" method="post">
             {{enroll_form}}
             {% csrf_token %}
-            <input type="submit" value="ENROLL NOW">
+            <input class="btn btn-primary" type="submit" value="ENROLL NOW">
 
         </form>
         {% else %}
-        <a href="{% url "register" %}" class="button">
+        <a href="{% url "register" %}" class="button btn btn-primary">
             REGISTER AS LEARNER TO ENROLL
         </a>
 
         {% endif %}
+       </div>
+      
 
     </div>
 

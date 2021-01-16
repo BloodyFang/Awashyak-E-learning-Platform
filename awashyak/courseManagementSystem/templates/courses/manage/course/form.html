@@ -41,7 +41,7 @@
 <br>
 <div class="container d-flex justify-content-center">
     
-    <form method = "post">
+    <form method = "post" enctype="multipart/form-data">
         {{ form.as_p }}
         {% csrf_token %}
 

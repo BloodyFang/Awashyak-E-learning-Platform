@@ -420,6 +420,14 @@
     <script src = "{% static 'assets/js/jquery-ui.min.js' %}"></script>
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js'%}"></script>
 
+
+    <script>
+      $(document).ready(function () {
+        {% block domready %}
+        {% endblock %}
+      });
+    </script>
+
 </body>
 
 </html>

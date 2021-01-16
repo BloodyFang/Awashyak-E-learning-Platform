@@ -1,0 +1,43 @@
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:'Roboto', sans-serif;
+    font-weight:300;
+}
+
+h1 {
+    background:#efefef;
+    width:100%;
+    overflow:auto;
+    margin:0;
+    padding: 8px;
+    text-align: center;
+}
+
+.module h2{
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(160, 151, 34);
+}
+
+
+
+.module p
+{
+    text-align: center;
+    
+}
+.container
+{
+    font-weight: bold;
+    font-size: 20px;
+    
+
+}
+
+.form
+{
+    background: coral;
+    text-align: center;
+    padding: 10px;
+}

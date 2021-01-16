@@ -1,0 +1,112 @@
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:'Roboto', sans-serif;
+    font-weight:300;
+}
+
+h1 {
+    background:#efefef;
+    width:100%;
+    overflow:auto;
+    margin:0;
+    padding: 8px;
+    text-align: center;
+    
+}
+
+
+
+.module {
+    padding:0px 20px;
+    float: left;;
+    width:500px;
+}
+
+.contents {
+    position: relative;
+    left: 20px;
+    width:15%;
+    height:700px;
+    padding:15px;
+    float:left;
+
+    font-family:'Roboto', sans-serif;
+}
+
+.contents ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+.contents ul li {
+    margin:0 0 10px 0;
+    padding:4px 10px 10px;
+    overflow:auto;
+    cursor:move;
+}
+
+
+
+
+.contents ul span {
+    text-transform:uppercase;
+    color:#bbb;
+    font-size:14px;
+}
+
+.contents ul a {
+    display:block;
+    color: black;
+    text-decoration:none;
+}
+
+.contents ul  li.selected a {
+    color: rgb(25, 0, 255);
+   
+}
+
+.contents ul a:hover {
+    color:#4dcc43;
+    cursor:move;
+}
+
+ul.content-types li {
+    list-style:none;
+    float:left;
+    margin:10px;
+    background:#efefef;
+    padding:8px 14px;
+}
+
+.hidden {
+    display:none;
+}
+
+#module-contents div {
+    padding:10px 20px;
+    border:1px solid #ccc;
+    background:#fff
+    
+  }
+  
+  #module-contents form {
+    margin:0;
+    padding:0;
+  }
+  
+  #module-contents input[type=submit] {
+    color:#3fad37;
+    background:none;
+    margin:-20px 0 0;
+    padding:0;
+    float:left;
+    text-transform:none;
+  }
+  
+  #module-contents div:hover {
+    cursor:move;
+  }
+  

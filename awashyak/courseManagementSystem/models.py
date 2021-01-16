@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
-from .enrolledFields import EnrollField
+from .orderFields import OrderField
 from django.template.loader import render_to_string
 from django.contrib.contenttypes.fields import GenericForeignKey
 # Create your models here.
@@ -20,6 +20,7 @@ class Course(models.Model):
     owner = models.ForeignKey(User,related_name='courses_crerated',on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject,related_name='courses',on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
+    coursePic = models.ImageField(upload_to  = 'course_pics/', blank= True, default ='t.png')
     slug = models.SlugField(max_length=200, unique=True)
     overview = models.TextField()
     created = models.DateTimeField(auto_now_add= True)
@@ -36,13 +37,13 @@ class Module(models.Model):
     course = models.ForeignKey(Course,related_name='modules',on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(blank = True)
-    enroll = EnrollField(blank = True, for_fields=['course'])
+    order = OrderField(blank = True, for_fields=['course'])
 
     def __str__(self):
-        return f'{self.enroll}. {self.title}'
+        return f'{self.order}. {self.title}'
 
     class Meta:
-        ordering = ['enroll']
+        ordering = ['order']
 
 
 class Content(models.Model):
@@ -58,10 +59,10 @@ class Content(models.Model):
                                                                                             )
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type','object_id')
-    enroll = EnrollField(blank = True, for_fields = ['module'])
+    order = OrderField(blank = True, for_fields = ['module'])
 
     class Meta:
-        ordering = ['enroll']
+        ordering = ['order']
 
 
 class ItemBase(models.Model):
@@ -79,7 +80,7 @@ class ItemBase(models.Model):
     #this method uses the render_to_string() function for rendering a template and returning the rendered content as string.
     def render(self):
         return render_to_string(f'courses/content/{self._meta.model_name}.html', {'item': self})
-
+    
 class Text(ItemBase):
     content = models.TextField()
 

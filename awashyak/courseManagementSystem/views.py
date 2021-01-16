@@ -14,8 +14,7 @@ from django.db.models import Count
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-# from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
+from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 
 # Create your views here.
 
@@ -45,7 +44,7 @@ class OwnerEditMixin(object):
 # 2. PermissionRequiredMixin grants access to view to users with a specific permission.
 class OwnerCourseMixin(OwnerMixin):
     model = Course
-    fields = ['subject','title','slug','overview']
+    fields = ['subject','title','coursePic','slug','overview']
     #  Redirect the user after the form is successfully submitted or deleted
     success_url = reverse_lazy('manage_course_list')
 
@@ -225,15 +224,6 @@ class CourseDetailView(DetailView):
         return context
 
 
-# To see courses that students are enrolled on.
-class StudentCourseListView(LoginRequiredMixin, ListView):
-    model = Course
-    template_name = 'students/course/list.html'
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(students__in=[self.request.user])
-
 
 class StudentCourseDetailView(DetailView):
     model = Course
@@ -256,17 +246,17 @@ class StudentCourseDetailView(DetailView):
             context['module'] = course.modules.all()[0]
         return context
 
-# class ModuleOrderView(CsrfExemptMixin,JsonRequestResponseMixin,View):
-#     def post(self,request):
-#         for id, order in self.request_json.item():
-#             Module.objects.filter(id = id , course__owner = request.user).update(order = order)
-#         return self.render_json_response({'saved':'OK'})
+class ModuleOrderView(CsrfExemptMixin,JsonRequestResponseMixin,View):
+    def post(self,request):
+        for id, order in self.request_json.item():
+            Module.objects.filter(id = id , course__owner = request.user).update(order = order)
+        return self.render_json_response({'saved':'OK'})
 
-# class ContentOrderView(CsrfExemptMixin,JsonRequestResponseMixin,View):
-#     def post(self,request):
-#         for id, order in self.request_json.items():
-#             Content.objects.filter(id = id, module__course__owner = request.user).update(order = order)
-#         return self.render_json_response({'saved':'OK'})
+class ContentOrderView(CsrfExemptMixin,JsonRequestResponseMixin,View):
+    def post(self,request):
+        for id, order in self.request_json.items():
+            Content.objects.filter(id = id, module__course__owner = request.user).update(order = order)
+        return self.render_json_response({'saved':'OK'})
 
 
 

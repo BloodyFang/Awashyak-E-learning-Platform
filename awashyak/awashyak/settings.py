@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userManagementSystem',
     'courseManagementSystem',
-    'embed_video',
+    'embed_video','interactionManagementSystem',
     
 ]
 

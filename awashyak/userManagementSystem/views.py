@@ -10,6 +10,10 @@ from django.contrib.auth.decorators import login_required
 from userManagementSystem.decorator import login_excluded
 from django.contrib.auth.hashers import check_password
 from django.http import HttpResponseRedirect
+from django.views.generic.list import ListView
+from courseManagementSystem.models import Course
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 # Create your views here.
@@ -108,7 +112,7 @@ def loginAuth(request):
         if auth_user is not None:
             login(request, auth_user)
 
-
+                
             return redirect('/')
 
         else:
@@ -177,7 +181,6 @@ def updateProfile(request):
                     user.first_name = request.POST['update_firstName']
                     user.last_name = request.POST['update_lastName']
                     user.username = request.POST['update_userName']
-                    user.email = request.POST['update_email']
                     user.save()
 
                        
@@ -257,6 +260,11 @@ def teacherDashboard(request):
     return render(request, 'teacherDashboard.html')
 
 
+# To see courses that students are enrolled on.
+class StudentCourseListView(LoginRequiredMixin, ListView):
+    model = Course
+    template_name = 'students/course/list.html'
 
-
-    
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(students__in=[self.request.user])

@@ -25,8 +25,8 @@ urlpatterns = [
     path('',views.renderIndexPage, name='index'),
     path('', include('userManagementSystem.urls')),
     path('course/',include('courseManagementSystem.urls')),
-    path('list/',CourseListView.as_view(), name = 'course_list')
-  
+    path('list/',CourseListView.as_view(), name = 'course_list'),
+    path('',include('interactionManagementSystem.urls')),
 ]
 
 if settings.DEBUG:

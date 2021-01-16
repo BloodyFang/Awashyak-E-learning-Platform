@@ -39,6 +39,11 @@ All courses
 
 
     <div class="grid-item">
+
+        
+        
+        <img src="{{course.coursePic.url}}" alt="My image">
+       
         
         <h3 class="hThree">
             <a href="{% url "course_detail" course.slug %}">
@@ -58,7 +63,7 @@ All courses
            
                
       
-                <a class="btnfindOut" href="{% url "course_detail" course.slug %}">
+                <a class="btnfindOut btn" href="{% url "course_detail" course.slug %}">
                     Find Out More » 
                 </a>
            

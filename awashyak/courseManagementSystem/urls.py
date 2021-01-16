@@ -18,9 +18,8 @@ urlpatterns = [
     path('subject/<slug:subject>/',views.CourseListView.as_view(),name = 'course_list_subject'),
     path('<slug:slug>/',views.CourseDetailView.as_view(), name = 'course_detail'),
     path('enroll-course',views.StudentEnrollCourseView.as_view(),name = 'student_enroll_course'),
-    path('courses/', views.StudentCourseListView.as_view(), name='student_course_list'),
     path('course/<pk>/',views.StudentCourseDetailView.as_view(), name = 'student_course_detail'),
     path('course/<pk>/<module_id>/', views.StudentCourseDetailView.as_view(), name = 'student_course_detail_module'),
-    # path('module/order/',views.ModuleOrderView.as_view(),name = 'module_order'),
-    # path('content/order/',views.ContentOrderView.as_view(),name = 'content_order'),
+    path('module/order/',views.ModuleOrderView.as_view(),name = 'module_order'),
+    path('content/order/',views.ContentOrderView.as_view(),name = 'content_order'),
 ]
