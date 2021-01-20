@@ -15,6 +15,7 @@ Awashyak  is a online learning platform, mainly focus on providing learning mate
   - (env) $ python -m pip install Django
   - (env) $ python -m pip install Pillow
   - (env) $ pip install django-embed-video==1.3.2
+  - (env) $ pip install django-braces
  
   
 5. Run python manage.py runserver and you are ready to go.
