@@ -10,7 +10,7 @@
 
 
 
-<h1> {{ module.title }}</h1>
+<h1> {{ modules.title }}</h1>
 
 <div class = "contents">
     <h3>Modules</h3>
@@ -24,14 +24,16 @@
                 </span>
                 <br>
                 {{m.title}}
+            
             </a>
         </li>
         {% empty %}
         <li>No modules yet.</li>
         {% endfor %}
+        <a class="form" href="{% url "forum" object.id  %}">Forum</a>
         
-
     </ul>
+
 
 </div>
 

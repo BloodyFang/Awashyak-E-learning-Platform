@@ -7,14 +7,14 @@
 {% endblock %}
 
 {% block content %}
-<!-- <h1 class="hOne">
+<h1 class="hOne">
 {% if subject %}
 {{ subject.title }} courses
 {% else %}
 All courses
 {% endif %}
-</h1> -->
-<div class="contents">
+</h1>
+<div class="contents " >
 <h3 class="hOne">Subject</h3>
 <ul id="modules">
 <li {% if not subject %}class="selected"{% endif %}>
@@ -30,6 +30,7 @@ All courses
 {% endfor %}
 </ul>
 </div>
+
 <div class="module">
     <div class="grid-container">
 {% for course in courses %}
